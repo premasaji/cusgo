@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kontak - Cusgo</title>
+  <link rel="stylesheet" href="./assets/css/style.css" />
+</head>
+<body>
+  <div id="header-container"></div>
+
+  <main class="container py-5 mt-4">
+    <div class="text-center mb-5 pb-3">
+      <h1 class="fw-bold text-dark mb-3 fs-2">Hubungi Kami</h1>
+      <p class="fs-5 text-secondary">Ada pertanyaan seputar layanan armada Cusgo? Jangan ragu untuk mengirim pesan kepada kami.</p>
+    </div>
+
+    <div class="row g-5 align-items-stretch mb-5">
+      <!-- Info Kontak -->
+      <div class="col-lg-5">
+        <div class="card card-hover h-100 border p-4 p-md-5 rounded-4 bg-white shadow-sm">
+          <h2 class="fw-bold mb-3 text-dark fs-3">Informasi Kontak</h2>
+          <p class="text-secondary mb-4 pb-2">Kami siap membantu memastikan kelancaran perjalanan Anda.</p>
+          
+          <div class="d-flex align-items-start mb-4">
+            <div class="bg-light p-3 rounded-3 border me-3 fs-4">📍</div>
+            <div>
+              <strong class="d-block text-dark fs-6 mb-1">Alamat Pool</strong>
+              <p class="text-secondary mb-0 small">Jl. Mahasiswa No. 123, Kota Blitar</p>
+            </div>
+          </div>
+          
+          <div class="d-flex align-items-start mb-4">
+            <div class="bg-light p-3 rounded-3 border me-3 fs-4">📞</div>
+            <div>
+              <strong class="d-block text-dark fs-6 mb-1">Telepon / WhatsApp</strong>
+              <p class="text-secondary mb-0 small">+62 812 3456 7890</p>
+            </div>
+          </div>
+          
+          <div class="d-flex align-items-start">
+            <div class="bg-light p-3 rounded-3 border me-3 fs-4">✉️</div>
+            <div>
+              <strong class="d-block text-dark fs-6 mb-1">Email</strong>
+              <p class="text-secondary mb-0 small">hello@cusgo.com</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form Kontak -->
+      <div class="col-lg-7">
+        <div class="card card-hover h-100 border p-4 p-md-5 rounded-4 bg-white shadow-sm">
+          <!-- Tambahkan id="contactForm" di sini -->
+          <form id="contactForm" class="d-flex flex-column gap-3">
+            <div class="mb-1">
+              <label for="name" class="form-label fw-bold text-dark fs-6">Nama Lengkap</label>
+              <!-- form-control-lg dihapus -->
+              <input type="text" id="name" class="form-control bg-white border" placeholder="Masukkan nama Anda" required />
+            </div>
+
+            <div class="mb-1">
+              <label for="email" class="form-label fw-bold text-dark fs-6">Alamat Email</label>
+              <input type="email" id="email" class="form-control bg-white border" placeholder="nama@email.com" required />
+            </div>
+
+            <div class="mb-1">
+              <label for="subject" class="form-label fw-bold text-dark fs-6">Kategori Pertanyaan</label>
+              <select id="subject" class="form-select bg-white border" required>
+                <option value="" disabled selected>Pilih topik...</option>
+                <option value="ketersediaan">Ketersediaan Unit Motor</option>
+                <option value="harga">Daftar Harga & Promo</option>
+                <option value="kerjasama">Kerjasama Instansi</option>
+                <option value="lainnya">Lainnya</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="message" class="form-label fw-bold text-dark fs-6">Pesan Anda</label>
+              <textarea id="message" rows="4" class="form-control bg-white border" placeholder="Tulis detail pertanyaan Anda di sini..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-action w-100 py-3 rounded-3 shadow-sm fs-6 mt-2">Kirim Pesan</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="footer-container"></div>
+
+  <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="./assets/js/main.js"></script>
+</body>
+</html>

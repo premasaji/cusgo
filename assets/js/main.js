@@ -1,15 +1,227 @@
-/* 1. Panggil komponen Bootstrap dari node_modules */
-import * as bootstrap from '../../node_modules/bootstrap/dist/js/bootstrap.esm.min.js';
+//    1. IMPORT DATABASE LOKAL
+import { teamData, unitMotor, statsData, featureData, stepsData, testimonialData } from '../data/dummyData.js';
 
-/* 2. Custom JS kamu di bawah sini */
-console.log("Bootstrap berhasil dimuat di background!");
+document.addEventListener("DOMContentLoaded", () => {
 
-// Contoh custom JS: memunculkan alert saat tombol diklik
-document.addEventListener('DOMContentLoaded', () => {
-    const btn = document.getElementById('btn-sapa');
-    if(btn) {
-        btn.addEventListener('click', () => {
-            alert('Halo! Custom JS berjalan dengan baik.');
-        });
+    //  2. RENDER HEADER (NAVBAR BOOTSTRAP)
+  const headerHTML = `
+    <nav class="navbar navbar-expand-md navbar-cusgo sticky-top">
+      <div class="container">
+        <a class="navbar-brand logo-text" href="index.html">Cusgo<span>.</span></a>
+        
+        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul class="navbar-nav gap-2 gap-md-4 text-center mt-3 mt-md-0 pb-3 pb-md-0">
+            <li class="nav-item"><a class="nav-link nav-link-custom" href="index.html">Beranda</a></li>
+            <li class="nav-item"><a class="nav-link nav-link-custom" href="unit.html">Unit</a></li>
+            <li class="nav-item"><a class="nav-link nav-link-custom" href="about.html">Tentang</a></li>
+            <li class="nav-item"><a class="nav-link nav-link-custom" href="agreement.html">Perjanjian</a></li>
+            <li class="nav-item"><a class="nav-link nav-link-custom" href="contact.html">Kontak</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  `;
+
+  //  3. RENDER FOOTER BOOTSTRAP
+  const footerHTML = `
+    <footer class="bg-white border-top mt-5 pt-5 pb-4">
+      <div class="container">
+        <div class="row gy-4 align-items-center mb-4 text-center text-md-start">
+          <div class="col-md-6">
+            <h2 class="fw-bold mb-1 logo-text fs-3">Cusgo<span>.</span></h2>
+            <p class="text-secondary mb-0">Partner perjalanan terbaik Anda di Kota Blitar.</p>
+          </div>
+          <div class="col-md-6 d-flex flex-wrap justify-content-center justify-content-md-end gap-3 gap-md-4">
+            <a href="unit.html" class="text-decoration-none text-secondary fw-medium">Armada</a>
+            <a href="contact.html" class="text-decoration-none text-secondary fw-medium">Kontak</a>
+            <a href="agreement.html" class="text-decoration-none text-secondary fw-medium">Syarat & Ketentuan</a>
+          </div>
+        </div>
+        <div class="text-center pt-4 border-top">
+          <p class="fs-6 fw-semibold mb-1">"Life is a journey, enjoy the ride with Cusgo."</p>
+          <span class="text-secondary small text-uppercase tracking-wider">— Cusgo Team 2026</span>
+        </div>
+      </div>
+    </footer>
+  `;
+
+  const headerContainer = document.getElementById("header-container");
+  const footerContainer = document.getElementById("footer-container");
+
+  if (headerContainer) headerContainer.outerHTML = headerHTML;
+  if (footerContainer) footerContainer.outerHTML = footerHTML;
+
+  //  4. SET MENU ACTIVE SECARA DINAMIS
+  const currentLocation = window.location.pathname.split("/").pop() || "index.html";
+  const navLinks = document.querySelectorAll(".nav-link-custom");
+
+  navLinks.forEach(link => {
+    if (link.getAttribute("href") === currentLocation) {
+      link.classList.add("active");
     }
+  });
+
+  //  5. RENDER DATA ANGGOTA TIM (KHUSUS about.html)
+  const teamContainer = document.getElementById("team-container");
+  if (teamContainer) {
+    let teamCardsHTML = "";
+    teamData.forEach(member => {
+      teamCardsHTML += `
+        <div class="col-12 col-md-6 col-lg-4 mb-4">
+          <div class="card card-hover h-100 text-center border-0 p-4">
+            <div class="d-flex justify-content-center">
+              <img src="${member.foto}" class="about-img mb-3" alt="${member.nama}" />
+            </div>
+            <h4 class="fw-bold mb-1 text-dark fs-5">${member.nama}</h4>
+            <div class="mb-3">
+              <span class="badge bg-light text-primary border rounded-pill px-3 py-2">${member.nim}</span>
+            </div>
+            <p class="text-secondary small mb-1 fw-medium">${member.ttl}</p>
+            <p class="text-secondary small mb-3 opacity-75">${member.alamat}</p>
+            <div class="mt-auto bg-light p-3 rounded">
+              <p class="fst-italic text-dark small mb-0 fw-medium">${member.quote}</p>
+            </div>
+          </div>
+        </div>
+      `;
+    });
+    teamContainer.innerHTML = teamCardsHTML;
+  }
+
+    //  6. RENDER DATA UNIT MOTOR (KHUSUS unit.html)
+  const unitContainer = document.getElementById("unit-container");
+  if (unitContainer) {
+    let unitCardsHTML = "";
+    unitMotor.forEach(unit => {
+      unitCardsHTML += `
+        <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-4">
+          <div class="card card-hover h-100 border-0 p-3 text-center">
+            <img src="${unit.img}" class="card-img-top unit-img" alt="${unit.nama}">
+            <div class="card-body d-flex flex-column p-0 mt-3">
+              <h5 class="card-title fw-bold text-dark mb-1 fs-5">${unit.nama}</h5>
+              <p class="card-text text-secondary fw-semibold mb-4">${unit.harga}</p>
+              <button class="btn btn-action w-100 py-2 rounded-3 mt-auto">Sewa Sekarang</button>
+            </div>
+          </div>
+        </div>
+      `;
+    });
+    unitContainer.innerHTML = unitCardsHTML;
+  }
+
+    //  7. RENDER DATA BERANDA (KHUSUS index.html)
+  const stats = document.getElementById("stats");
+  if (stats) {
+    let statsHTML = "";
+    statsData.forEach(i => {
+      statsHTML += `
+        <div class="col-6 col-md-3 text-center text-white mb-4 mb-md-0">
+          <h3 class="fs-1 fw-bold" style="color: var(--accent-color);">${i.title}</h3>
+          <p class="fs-6">${i.desc}</p>
+        </div>
+      `;
+    });
+    stats.innerHTML = statsHTML;
+  }
+
+  const features = document.getElementById("features");
+  if (features) {
+    let featuresHTML = "";
+    featureData.forEach(i => {
+      featuresHTML += `
+        <div class="col-12 col-md-4 mb-4">
+          <div class="card card-hover h-100 border-0 p-4 text-center">
+            <div class="fs-1 mb-3">${i.icon}</div>
+            <h3 class="fs-5 fw-bold text-dark mb-3">${i.title}</h3>
+            <p class="text-secondary mb-0 fs-6">${i.desc}</p>
+          </div>
+        </div>
+      `;
+    });
+    features.innerHTML = featuresHTML;
+  }
+
+  const steps = document.getElementById("steps");
+  if (steps) {
+    let stepsHTML = "";
+    stepsData.forEach(i => {
+      stepsHTML += `
+        <div class="col-12 col-md-4 text-center mb-5 mb-md-0 position-relative">
+          <div class="fs-1 fw-bold position-absolute start-50 translate-middle-x" style="top: -20px; z-index: 0; color: rgba(15, 23, 42, 0.05);">${i.num}</div>
+          <div class="position-relative" style="z-index: 1;">
+            <h3 class="fs-5 fw-bold text-dark mb-2 mt-4">${i.title}</h3>
+            <p class="text-secondary fs-6">${i.desc}</p>
+          </div>
+        </div>
+      `;
+    });
+    steps.innerHTML = stepsHTML;
+  }
+
+  const test = document.getElementById("testimonials");
+  if (test) {
+    let testHTML = "";
+    testimonialData.forEach(i => {
+      testHTML += `
+        <div class="col-12 col-md-4 mb-4">
+          <div class="card card-hover h-100 border-0 p-4">
+            <div class="card-body p-0 d-flex flex-column text-center text-md-start">
+              <p class="fst-italic text-secondary mb-4 flex-grow-1">"${i.text}"</p>
+              <strong class="fw-bold" style="color: var(--accent-color);">- ${i.name}</strong>
+            </div>
+          </div>
+        </div>
+      `;
+    });
+    test.innerHTML = testHTML;
+  }
+
+    //  8. LOGIKA FORM KONTAK (NOTIFIKASI TOAST MODERN)
+  const contactForm = document.getElementById("contactForm");
+  
+  if (contactForm) {
+    contactForm.addEventListener("submit", function (e) {
+      // 1. Mencegah halaman refresh
+      e.preventDefault(); 
+      
+      // 2. Cek apakah wadah notifikasi (Toast Container) sudah ada di HTML.
+      // Jika belum, kita buat elemennya langsung via JavaScript di pojok kanan atas (top-0 end-0)
+      let toastContainer = document.getElementById('toast-container');
+      if (!toastContainer) {
+        toastContainer = document.createElement('div');
+        toastContainer.id = 'toast-container';
+        // Class Bootstrap untuk memposisikan di pojok kanan atas agar melayang
+        toastContainer.className = 'toast-container position-fixed top-0 end-0 p-4';
+        toastContainer.style.zIndex = '1055'; // Agar berada di atas Navbar
+        document.body.appendChild(toastContainer);
+      }
+
+      // 3. Kita suntikkan desain Toast-nya dengan warna tema Cusgo (atau warna hijau sukses)
+      toastContainer.innerHTML = `
+        <div id="contactToast" class="toast align-items-center text-bg-success border-0 shadow" role="alert" aria-live="assertive" aria-atomic="true">
+          <div class="d-flex">
+            <div class="toast-body fs-10 fw-medium px-3 py-3">
+              ✨ Terima kasih telah menghubungi kami! Pesan Anda segera kami balas.
+            </div>
+            <button type="button" class="btn-close btn-close-white me-3 m-auto" data-bs-dismiss="toast" aria-label="Tutup"></button>
+          </div>
+        </div>
+      `;
+      
+      // 4. Panggil Bootstrap untuk "menghidupkan" dan memunculkan Toast tersebut
+      const toastElement = document.getElementById('contactToast');
+      const toast = new bootstrap.Toast(toastElement, {
+        delay: 4000 // Notifikasi akan hilang otomatis setelah 4 detik
+      });
+      toast.show();
+      
+      // 5. Kosongkan kembali form
+      contactForm.reset(); 
+    });
+  }
+
 });

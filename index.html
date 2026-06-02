@@ -1,21 +1,68 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tugas Bootstrap Rapi</title>
-    
-    <link rel="stylesheet" href="./assets/css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cusgo - Rental Motor</title>
+  <link rel="stylesheet" href="./assets/css/style.css" />
 </head>
 <body>
+  <div id="header-container"></div>
 
-    <div class="container mt-5">
-        <h1 class="text-primary">Struktur Folder Bersih!</h1>
-        <p>Bootstrap dipanggil dari balik layar lewat file custom kita.</p>
-        
-        <button id="btn-sapa" class="btn btn-primary tombol-custom">Klik Aku</button>
-    </div>
+  <main>
+    <section class="container d-flex align-items-center" style="min-height: 80vh; padding-top: 2rem;">
+      <div class="row align-items-center w-100 gy-5">
+        <div class="col-lg-6 text-center text-lg-start">
+          <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-pill fw-bold mb-4">Terpercaya di Blitar & Sekitarnya</span>
+          <h1 class="fw-bolder mb-4 text-dark lh-sm" style="font-size: 2.8rem;">Perjalanan Hebat Dimulai dari <span style="color: var(--accent-color);">Satu Klik</span></h1>
+          <p class="fs-5 text-secondary mb-5">Cusgo hadir untuk memberikan kebebasan eksplorasi tanpa batas. Pilih armada favoritmu, nikmati harga transparan, dan jelajahi setiap sudut kota dengan aman.</p>
+          <div class="d-flex gap-3 justify-content-center justify-content-lg-start flex-wrap">
+            <a href="contact.html" class="btn btn-action px-4 py-3 rounded-3 shadow-sm">Sewa Sekarang</a>
+            <a href="about.html" class="btn btn-outline-secondary px-4 py-3 rounded-3 fw-bold text-dark border-2">Kenali Kami</a>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <img src="./assets/images/motor/img.png" alt="Cusgo Hero Motor" class="img-fluid" style="filter: drop-shadow(0 20px 50px rgba(0,0,0,0.1));">
+        </div>
+      </div>
+    </section>
 
-    <script type="module" src="./assets/js/main.js"></script>
+    <section class="py-5" style="background-color: var(--primary-color);">
+      <div class="container py-4">
+        <div class="row justify-content-center" id="stats"></div>
+      </div>
+    </section>
+
+    <section class="container py-5 my-5">
+      <div class="text-center mb-5 pb-3">
+        <h2 class="fw-bold text-dark mb-3">Mengapa Harus Cusgo?</h2>
+        <p class="fs-6 text-secondary">Kami tidak hanya menyewakan motor, kami menyediakan pengalaman perjalanan yang bebas dari rasa khawatir.</p>
+      </div>
+      <div class="row g-4 justify-content-center" id="features"></div>
+    </section>
+
+    <section class="bg-white py-5 border-top border-bottom">
+      <div class="container py-5">
+        <div class="text-center mb-5 pb-3">
+          <h2 class="fw-bold text-dark mb-3">Hanya 3 Langkah Mudah</h2>
+          <p class="fs-6 text-secondary">Sewa motor tidak pernah semudah ini.</p>
+        </div>
+        <div class="row g-4 justify-content-center" id="steps"></div>
+      </div>
+    </section>
+
+    <section class="container py-5 my-5">
+      <div class="text-center mb-5 pb-3">
+        <h2 class="fw-bold text-dark mb-3">Apa Kata Mereka?</h2>
+        <p class="fs-6 text-secondary">Dengarkan pengalaman langsung dari para petualang yang telah menggunakan Cusgo.</p>
+      </div>
+      <div class="row g-4 justify-content-center" id="testimonials"></div>
+    </section>
+  </main>
+
+  <div id="footer-container"></div>
+  
+  <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="./assets/js/main.js"></script>
 </body>
 </html>

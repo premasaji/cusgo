@@ -1,14 +1,143 @@
-/* 1. Panggil Bootstrap dari node_modules */
+/* =========================================
+   1. IMPORT BOOTSTRAP
+   ========================================= */
 @import url('../../node_modules/bootstrap/dist/css/bootstrap.min.css');
 
-/* 2. Custom CSS kamu di bawah sini */
-body {
-    /* Contoh: Karena kamu suka desain gelap/futuristik, kita set background agak gelap */
-    background-color: #121212; 
-    color: #ffffff;
+/* =========================================
+   2. VARIABEL DASAR (Identitas Cusgo Tetap Utuh)
+   ========================================= */
+:root {
+  --primary-color: #0f172a; 
+  --primary-hover: #1e293b;
+  --accent-color: #3b82f6; 
+  --text-dark: #0f172a;
+  --text-light: #64748b;
+  --bg-white: #ffffff;
+  --bg-page: #f3f4f6; 
+  --border-color: #e2e8f0;
 }
 
-.tombol-custom {
-    border-radius: 20px;
-    padding: 10px 30px;
+body {
+  background-color: var(--bg-page);
+  color: var(--text-dark);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* =========================================
+   3. KUSTOMISASI NAVBAR BOOTSTRAP
+   ========================================= */
+/* Memberikan efek border dan shadow khas Cusgo ke navbar Bootstrap */
+.navbar-cusgo {
+  background-color: var(--bg-white);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-dark) !important;
+  letter-spacing: 0.5px;
+}
+
+.logo-text span {
+  color: var(--accent-color);
+}
+
+/* Mempertahankan animasi garis bawah (underline) saat di-hover */
+.nav-link-custom {
+  color: var(--text-light) !important;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-link-custom:hover, .nav-link-custom.active {
+  color: var(--text-dark) !important;
+  font-weight: 700;
+}
+
+.nav-link-custom::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 8px; /* Disesuaikan dengan padding bawaan Bootstrap */
+  background-color: var(--text-dark);
+  transition: width 0.3s ease-in-out;
+}
+
+.nav-link-custom:hover::after, .nav-link-custom.active::after {
+  width: calc(100% - 16px);
+}
+
+/* =========================================
+   4. KUSTOMISASI KARTU BOOTSTRAP (Shadow & Hover)
+   ========================================= */
+/* Kita buat class tambahan untuk disematkan di .card Bootstrap */
+.card-hover {
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  border-color: var(--accent-color);
+  transform: translateY(-5px); /* Efek ngambang ke atas */
+}
+
+/* =========================================
+   5. STYLING GAMBAR & ELEMEN SPESIFIK CUSGO
+   ========================================= */
+.unit-img {
+  height: 180px;
+  object-fit: contain; 
+  padding: 1rem;
+}
+
+.about-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%; 
+  object-fit: cover;
+  object-position: top; 
+  border: 4px solid var(--bg-page);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  margin-top: 1rem;
+}
+
+/* Identitas warna tombol custom (menimpa default Bootstrap jika diperlukan) */
+.btn-action {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn-action:hover {
+  background-color: var(--primary-hover);
+  color: white;
+}
+
+/* =========================================
+   6. HALAMAN PERJANJIAN (Agreement)
+   ========================================= */
+.highlight-box {
+  background-color: #fffbeb; 
+  border: 1px solid #fde68a;
+  border-left: 5px solid #f59e0b; 
+  padding: 1.2rem 1.5rem;
+  border-radius: 8px;
+  color: #92400e; 
+  font-weight: 500;
+}
+
+/* Modifikasi input form agar saat di-klik warnanya sesuai accent-color Cusgo */
+.form-control:focus, .form-select:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 0.25rem rgba(59, 130, 246, 0.25);
 }
