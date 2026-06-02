@@ -1,0 +1,13 @@
+# Dependensi Node.js (Wajib diabaikan)
+node_modules/
+
+# File log dari npm (jika terjadi error)
+npm-debug.log*
+npm-error.log*
+
+# File sistem operasi bawaan MacOS & Windows (Sering terikut secara tidak sengaja)
+.DS_Store
+Thumbs.db
+
+# Konfigurasi workspace editor lokal (opsional, agar tidak konflik dengan tim)
+.vscode/
